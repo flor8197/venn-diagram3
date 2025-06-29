@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cell Organelle Flashcards</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #0d47a1;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .flashcard-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 10px;
+      scroll-behavior: smooth;
+    }
+
+    .flashcard {
+      width: 180px;
+      height: 260px;
+      perspective: 1000px;
+      flex-shrink: 0;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .flashcard.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .card-front {
+      background-color: #bbdefb;
+      color: #0d47a1;
+      font-weight: bold;
+    }
+
+    .card-back {
+      background-color: #e3f2fd;
+      color: #01579b;
+      transform: rotateY(180deg);
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cell Organelle Flashcards</h1>
+
+  <div class="flashcard-container" id="flashcardContainer"></div>
+
+  <div class="footer">Flashcards created with HTML/CSS/JS - Ready to use offline!</div>
+
+  <script>
+    const organelles = [
+      { name: "Nucleus", function: "Controls cell activities and contains DNA." },
+      { name: "Cell Membrane", function: "Controls what enters and leaves the cell." },
+      { name: "Cytoplasm", function: "Gel-like substance where organelles are suspended." },
+      { name: "Ribosome", function: "Site of protein synthesis in the cell." },
+      { name: "Mitochondrion", function: "Produces energy (ATP) for the cell through cellular respiration." },
+      { name: "Endoplasmic Reticulum", function: "Transports materials within the cell and helps in protein/lipid synthesis." },
+      { name: "Golgi Apparatus", function: "Modifies, sorts, and packages proteins for secretion or delivery to other organelles." },
+      { name: "Vacuole", function: "Stores food, water, and waste materials." },
+      { name: "Cell Wall", function: "Provides structural support and protection in plant cells." },
+      { name: "Chloroplast", function: "Site of photosynthesis; contains chlorophyll." },
+      { name: "Capsule", function: "Protective layer outside the cell wall in some bacteria." },
+      { name: "Flagellum", function: "Used for movement in some bacteria." },
+      { name: "Plasmid", function: "Circular DNA molecule that carries extra genes." },
+      { name: "Lysosome", function: "Contains enzymes to break down waste materials." },
+      { name: "Peroxisome", function: "Breaks down fatty acids and detoxifies chemicals." },
+      { name: "Vesicle", function: "Transports substances inside the cell." },
+      { name: "Cytoskeleton", function: "Maintains cell shape and aids in movement." },
+      { name: "Centriole", function: "Helps in organizing chromosomes during cell division." },
+      { name: "Nucleolus", function: "Produces ribosomes inside the nucleus." },
+      { name: "Nuclear Envelope", function: "Controls what enters and leaves the nucleus." }
+    ];
+
+    const container = document.getElementById("flashcardContainer");
+
+    organelles.forEach(org => {
+      const card = document.createElement("div");
+      card.className = "flashcard";
+      card.innerHTML = `
+        <div class="card-inner">
+          <div class="card-front">${org.name}</div>
+          <div class="card-back">${org.function}</div>
+        </div>
+      `;
+
+      // Flip on click
+      card.addEventListener("click", () => {
+        card.classList.toggle("flipped");
+      });
+
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
